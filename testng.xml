@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Test Suite">
+    <test name="Amazon Test">
+        <groups>
+            <run>
+                <include name="Sanity"></include>
+            </run>
+        </groups>
+       <classes>
+           <class name="amazonTest.AmazonHome"></class>
+       </classes>
+    </test>
+</suite>
