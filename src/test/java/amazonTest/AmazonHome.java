@@ -7,10 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageObject.HomePageObject;
 
 public class AmazonHome {
@@ -21,19 +18,22 @@ public class AmazonHome {
     JavascriptExecutor jse;
 
     @BeforeClass(alwaysRun = true)
-    public void initDriver(){
+    @Parameters({"browser"}) //can read multiple paramenter from TestNG file
+    public void initDriver(String browser){
+        String[] browser_selection = browser.split(",");// spliting values
         ah = new BrowserInit();
-        driver = ah.initializeDriver("chrome");
+        driver = ah.initializeDriver(browser_selection[0]);
         jse = (JavascriptExecutor)driver;
         driver.get(url);
         hpo = new HomePageObject(driver);
 
     }
 
-    @Test(groups = {"Regression"})
-    public void verifyAmazonLaunch() {
+    @Test(groups = {"Regression1"})
+    public void verifyAmazonLaunch() throws InterruptedException {
         String expectedTitle = "Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more";
         String actualTitle = driver.getTitle();
+        Thread.sleep(2000);
         Assert.assertEquals(actualTitle,expectedTitle);
     }
 
