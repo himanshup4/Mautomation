@@ -6,7 +6,7 @@
            <class name="amazonTest.AmazonHome"></class>
        </classes>
     </test>
-    <test name="Test1">
+    <test name="Test2">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="amazonTest.AmazonLogin"></class>
