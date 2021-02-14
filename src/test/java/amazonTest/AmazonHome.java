@@ -15,31 +15,28 @@ public class AmazonHome {
     HomePageObject hpo;
     BrowserInit ah;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void initDriver(){
         ah = new BrowserInit();
         driver = ah.initializeDriver("chrome");
         driver.get(url);
     }
 
-    @Test
+    @Test(groups = {"Regression"})
     public void verifyAmazonLaunch() {
-
         String expectedTitle = "Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more";
         String actualTitle = driver.getTitle();
         Assert.assertEquals(actualTitle,expectedTitle);
     }
 
-    @Test
+    @Test(groups = {"Regression","Sanity"})
     public void verifySearch() {
         hpo = new HomePageObject(driver);
         hpo.enterText("Shoes");
         hpo.clickit();
     }
 
-
-
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public void close(){
         driver.close();
     }
