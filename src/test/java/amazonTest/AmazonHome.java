@@ -5,24 +5,39 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pageObject.HomePageObject;
 
 public class AmazonHome {
-    public WebDriver driver;
+    WebDriver driver;
     String url ="https://www.amazon.com";
+    HomePageObject hpo;
+    BrowserInit ah;
 
     @BeforeClass
     public void initDriver(){
-        BrowserInit ah = new BrowserInit();
+        ah = new BrowserInit();
         driver = ah.initializeDriver("chrome");
+        driver.get(url);
     }
+
     @Test
     public void verifyAmazonLaunch() {
-        driver.get(url);
+
         String expectedTitle = "Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more";
         String actualTitle = driver.getTitle();
         Assert.assertEquals(actualTitle,expectedTitle);
     }
+
+    @Test
+    public void verifySearch() {
+        hpo = new HomePageObject(driver);
+        hpo.enterText("Shoes");
+        hpo.clickit();
+    }
+
+
 
     @AfterClass
     public void close(){
