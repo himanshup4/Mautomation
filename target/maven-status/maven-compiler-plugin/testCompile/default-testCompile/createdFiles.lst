@@ -1,0 +1,6 @@
+amazonHelper\DataPro.class
+pageObject\LoginPageObject.class
+amazonHelper\BrowserInit.class
+amazonTest\AmazonLogin.class
+amazonTest\AmazonHome.class
+pageObject\HomePageObject.class
